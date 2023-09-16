@@ -10,8 +10,15 @@ linkedList.addNode(3, 4)
 linkedList.addNode(4, 5)
 linkedList.addNode(5)
 
-print(linkedList.list)
+print(linkedList.dict)
+
+for i in range(0, linkedList.size()):
+    print(linkedList.nextNode())
 
 linkedList.deleteNode(2)
+linkedList.resetPointer()
 
-print(linkedList.list)
+print(linkedList.dict)
+
+for i in range(0, linkedList.size()):
+    print(linkedList.nextNode())

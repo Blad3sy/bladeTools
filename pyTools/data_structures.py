@@ -112,30 +112,36 @@ class Dynamic_Queue():
 
 class Linked_List():
     def __init__(self):
-        self.list = []
+        self.dict = {}
         self.currentPointer = 0
 
     def empty(self):
-        if self.list: return False
+        if self.dict: return False
         else: return True
     
     def size(self):
-        return len(self.list)
+        return len(self.dict)
+
+    def resetPointer(self):
+        self.currentPointer = 0
 
     def nextNode(self):
-        toReturn = self.list[self.currentPointer][0]
-        self.currentPointer = self.list[self.currentPointer][1]
+        if self.currentPointer == None:
+            return "No nodes with pointer."
+        toReturn = self.dict[self.currentPointer][0]
+        self.currentPointer = self.dict[self.currentPointer][1]
         return toReturn
     
     def addNode(self, value, pointer = None):
-        self.list.append([value, pointer])
+        self.dict[self.size()] = [value, pointer]
     
     def deleteNode(self, index):
-        for i in range(0, len(self.list)):
-            if self.list[i][1] == index:
-                self.list[i][1] = self.list[index][1]
-        
-        del self.list[index]
+        if self.dict:
+            for i in range(0, len(self.dict)):
+                if self.dict[i][1] == index:
+                    self.dict[i][1] = self.dict[index][1]
+            del self.dict[index]
+        else: print("The linked list is empty!")
     
     def clear(self):
-        self.list = []
+        self.dict = {}
