@@ -22,3 +22,6 @@ print(linkedList.dict)
 
 for i in range(0, linkedList.size()):
     print(linkedList.nextNode())
+
+test = data_structures.Static_Queue()
+test.setSize("A")

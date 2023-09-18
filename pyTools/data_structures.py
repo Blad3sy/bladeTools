@@ -25,7 +25,8 @@ class Static_Stack():
         else: print("The stack is empty!")
     
     def setSize(self, newSize):
-        self.arraySize = newSize
+        try: self.arraySize = int(newSize)
+        except ValueError: print("The size was not an integer!")
     
     def clear(self):
         self.list = []
@@ -83,7 +84,8 @@ class Static_Queue():
         else: print("The queue is empty!")
     
     def setSize(self, newSize):
-        self.arraySize = newSize
+        try: self.arraySize = int(newSize)
+        except ValueError: print("The size was not an integer!")
 
     def clear(self):
         self.list = []
@@ -126,22 +128,60 @@ class Linked_List():
         self.currentPointer = 0
 
     def nextNode(self):
-        if self.currentPointer == None:
-            return "No nodes with pointer."
-        toReturn = self.dict[self.currentPointer][0]
-        self.currentPointer = self.dict[self.currentPointer][1]
-        return toReturn
+        try:
+            toReturn = self.dict[self.currentPointer][0]
+            self.currentPointer = self.dict[self.currentPointer][1]
+            return toReturn
+        except KeyError: print("No entry exists for this pointer!")
     
     def addNode(self, value, pointer = None):
         self.dict[self.size()] = [value, pointer]
     
     def deleteNode(self, index):
         if self.dict:
-            for i in range(0, len(self.dict)):
-                if self.dict[i][1] == index:
-                    self.dict[i][1] = self.dict[index][1]
-            del self.dict[index]
+            try: 
+                for i in range(0, len(self.dict)):
+                    if self.dict[i][1] == index:
+                        self.dict[i][1] = self.dict[index][1]
+                del self.dict[index]
+            except KeyError: print("No entry exists for this index!")
         else: print("The linked list is empty!")
+    
+    def clear(self):
+        self.dict = {}
+
+class Unweighted_Graph():
+    def __init__(self):
+        self.dict = {}
+        self.currentNodeKey = None
+    
+    def empty(self):
+        if self.dict: return False
+        else: return True
+    
+    def size(self):
+        return len(self.dict)
+    
+    def addNode(self, key, connections, data):
+        self.dict[key] = {"connections" : connections, "data" : data}
+    
+    def deleteNode(self, key):
+        if self.dict: 
+            try: del self.dict[key]
+            except KeyError: print("No entry exists for this key!")
+        else: print("The graph is empty!")
+    
+    def viewConnections(self, key):
+        if self.dict: 
+            try: return self.dict[key]["connections"]
+            except KeyError: print("No entry exists for this key!")
+        else: print("The graph is empty!")
+
+    def viewData(self, key):
+        if self.dict: 
+            try: return self.dict[key]["data"]
+            except KeyError: print("No entry exists for this key!")
+        else: print("The graph is empty!")
     
     def clear(self):
         self.dict = {}
