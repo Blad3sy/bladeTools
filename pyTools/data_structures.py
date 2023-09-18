@@ -70,7 +70,7 @@ class Static_Queue():
         if self.size() < self.arraySize:
             self.list.append(toEnqueue)
             self.endPointer += 1
-            if self.endPointer == 10: self.endPointer = 0
+            if self.endPointer == self.arraySize: self.endPointer = 0
         else: print("The queue is full!")
     
     def dequeue(self):
