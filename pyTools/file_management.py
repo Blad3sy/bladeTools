@@ -14,6 +14,12 @@ def wipe_Folder(dir):
 def sort_Folder_Filetype(dir):
     files = os.listdir(dir)
     extensionList = []
+    offset = 0
+
+    for i in range(0, len(files)):
+        if os.path.splitext(files[i - offset])[1] == "":
+            del files[i - offset]
+            offset += 1
 
     for item in files:
         fileTuple = os.path.splitext(item)
@@ -21,10 +27,11 @@ def sort_Folder_Filetype(dir):
             extensionList.append(fileTuple[1])
     
     for item in extensionList:
+        item = item[1:]
         try: os.mkdir(f"{dir}/{item}")
         except: print("Folder in extension list already exists!")
     
     for item in files:
         fileTuple = os.path.splitext(item)
-        try: shutil.move(f"{dir}/{item}", f"{dir}/{fileTuple[1]}")
+        try: shutil.move(f"{dir}/{item}", f"{dir}/{fileTuple[1][1:]}")
         except shutil.Error: print("File or folder already exists!")
