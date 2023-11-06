@@ -12,16 +12,21 @@ class Static_Stack():
         return len(self.list)
     
     def push(self, toInsert):
-        if self.size < self.arraySize:
+        if self.size() < self.arraySize:
             self.list.append(toInsert)
-            self.topPointer 
+            self.topPointer += 1
         else: print("The stack is full!")
     
     def pop(self):
         if self.list:
-            toReturn = self.list(self.topPointer)
+            toReturn = self.list.pop(self.topPointer)
             self.topPointer -= 1
             return toReturn
+        else: print("The stack is empty!")
+    
+    def peek(self):
+        if self.list:
+            return self.list[self.topPointer]
         else: print("The stack is empty!")
     
     def setSize(self, newSize):
@@ -50,6 +55,11 @@ class Dynamic_Stack():
             return self.list.pop(0)
         else: print("The stack is empty!")
     
+    def peek(self):
+        if self.list:
+            return self.list[0]
+        else: print("The stack is empty!")
+    
     def clear(self):
         self.list = []
 
@@ -76,10 +86,9 @@ class Static_Queue():
     
     def dequeue(self):
         if self.list:
-            toReturn = self.list.pop(self.startPointer)
+            toReturn = self.list[self.startPointer]
             self.startPointer += 1
             if self.startPointer == 10: self.startPointer = 0
-
             return toReturn
         else: print("The queue is empty!")
     
