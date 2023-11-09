@@ -88,7 +88,7 @@ class Static_Queue():
         if self.list:
             toReturn = self.list[self.startPointer]
             self.startPointer += 1
-            if self.startPointer == 10: self.startPointer = 0
+            if self.startPointer == self.arraySize: self.startPointer = 0
             return toReturn
         else: print("The queue is empty!")
     
