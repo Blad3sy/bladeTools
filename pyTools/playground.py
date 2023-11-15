@@ -1,6 +1,23 @@
-import file_management
-import os
+import data_structures
 
-file_management.sort_Folder_Filetype("bladeTools/pyTools/testfolder")
-# print(os.path.splitext("bladeTools/pyTools/testfolder"))
-# print(os.listdir("bladeTools/pyTools"))
+queue = data_structures.Static_Queue()
+
+queue.dequeue()
+queue.enqueue(1)
+print(queue.list, queue.endPointer)
+queue.enqueue(2)
+print(queue.list, queue.endPointer)
+queue.enqueue(3)
+print(queue.list, queue.endPointer)
+queue.dequeue()
+print(queue.list, queue.endPointer)
+queue.enqueue(4)
+print(queue.list, queue.endPointer)
+queue.enqueue(5)
+print(queue.list, queue.endPointer)
+queue.enqueue(6)
+print(queue.list, queue.endPointer)
+queue.enqueue(7)
+print(queue.list, queue.endPointer)
+queue.dequeue()
+print(queue.list)

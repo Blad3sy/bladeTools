@@ -78,19 +78,27 @@ class Static_Queue():
         return len(self.list)
     
     def enqueue(self, toEnqueue):
-        if self.size() < self.arraySize:
-            self.list.append(toEnqueue)
-            self.endPointer += 1
-            if self.endPointer == self.arraySize: self.endPointer = 0
-        else: print("The queue is full!")
-    
+        self.endPointer += 1
+        if self.endPointer - 1 == self.arraySize: self.endPointer = 0
+       
+        if self.endPointer == self.startPointer:
+            print("Queue is full!")
+            self.endPointer -= 1
+            if self.endPointer == -1: self.endPointer = self.arraySize
+        else:
+            try: self.list[self.endPointer] = toEnqueue
+            except IndexError: self.list.append(toEnqueue)
+   
     def dequeue(self):
-        if self.list:
+        try: 
             toReturn = self.list[self.startPointer]
-            self.startPointer += 1
-            if self.startPointer == self.arraySize: self.startPointer = 0
-            return toReturn
-        else: print("The queue is empty!")
+            if toReturn == None: print("Queue is empty!")
+            else:
+                self.list[self.startPointer] = None
+                self.startPointer += 1
+                if self.startPointer - 1 == self.arraySize: self.startPointer = 0
+                return toReturn
+        except IndexError: print("Queue is empty!")
     
     def setSize(self, newSize):
         try: self.arraySize = int(newSize)
