@@ -17,12 +17,9 @@ namespace data_structure_templates {
             Length = length;
             MainArray = new int?[Length];
 
-            // I feel like I should comment what this code does as it doesn't exactly read
-            // intuitively. If the argument starter is null (which it is by default), this code
-            // generates an empty array so that no elements are added to the main array. 
-            // If the starter however has a value passed into it, this code instead sequentially
-            // adds the whole array to the main array as starter != null ; this leaves it as the
-            // array it was passed in as, allowing it to be iterated through as such.
+            // I feel like I should comment what this code does as it doesn't exactly read intuitively. If the argument starter is null (which it is by default), this code 
+            // generates an empty array so that no elements are added to the main array. If the starter however has a value passed into it, this code instead sequentially
+            // adds the whole array to the main array as starter != null ; this leaves it as the array it was passed in as, allowing it to be iterated through as such.
             
             starter ??= Array.Empty<int>();
             for (int i = 0; i < starter.Length; i++) {
@@ -41,18 +38,25 @@ namespace data_structure_templates {
     }
 
     abstract class ListDataStructure : IDStruct {
-        protected List<int> MainList { get; set; }
-        public int Length { get; private set; }
+        protected List<int?> MainList { get; set; }
+        public int Length { get; protected set; }
 
-        public ListDataStructure(int[]? starter) {
-            MainList = new List<int>();
+        public ListDataStructure(int?[]? starter) {
+            MainList = new List<int?>();
 
-            starter ??= Array.Empty<int>();
+            starter ??= Array.Empty<int?>();
             MainList.AddRange(starter);
+            Length += starter.Length;
         }
 
         public void Clear() => MainList.Clear();
         public bool IsEmpty() => MainList.Count == 0;
+        public void Display() {
+            foreach (var item in MainList) {
+                if(item != null) {Console.Write($"{item}, ");}
+            }
+            Console.WriteLine();
+        }
     }
 
     abstract class HashtableDataStructure : IDStruct {

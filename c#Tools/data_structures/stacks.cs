@@ -1,6 +1,6 @@
 using data_structure_templates;
 
-namespace data_structures {
+namespace stacks {
     class StaticStack : ArrayDataStructure {
         private int TopPointer { get; set; }
         public StaticStack(int length, int[]? starter = null) : base(length, starter) { 
@@ -75,6 +75,83 @@ namespace data_structures {
                 }
             }
             return returnerArray; 
+        }
+    }
+
+    class DynamicStack : ListDataStructure {
+        private int TopPointer { get; set; }
+
+        public DynamicStack(int?[]? starter = null) : base(starter) {
+            TopPointer = (starter == null) ? 0 : starter.Length;
+        }
+
+        public void Push(int toPush) {
+            MainList.Add(toPush);
+            TopPointer++;
+            Length++;
+        }
+
+        public void Push(int?[] toPush) {
+            // Method overload purpose : push a whole array of values to the stack
+
+            MainList.AddRange(toPush);
+            TopPointer += toPush.Length;
+            Length += toPush.Length;
+        }
+
+        public int? Pop() {
+            int? returner = null;
+
+            if (TopPointer - 1 >= 0) {
+                returner = MainList[TopPointer - 1];
+                MainList[TopPointer - 1] = null;
+                TopPointer--;
+                Length--;
+            }
+            else { Console.WriteLine("The stack is empty!"); }
+
+            return returner;
+        }
+
+        public int?[]? Pop(int count) {
+            // Method overload purpose : pop {count} number of items from the stack
+            int?[]? returner = null;
+
+            if (TopPointer - 1 - count >= 0) {
+                returner = new int?[count];
+
+                for (int i = 0; i < count; i++) {
+                    returner[i] = MainList[TopPointer - 1];
+                    MainList[TopPointer - 1] = null;
+                    TopPointer--;
+                    Length--;
+                } 
+            }
+            else { Console.WriteLine("You tried to remove more elements than there are!"); }
+
+            return returner;
+        }
+
+        public int? Peek() {
+            if (TopPointer - 1 >= 0) {
+                return MainList[TopPointer - 1];
+            }
+            else { Console.WriteLine("The stack is empty!"); }
+
+            return null;
+        }
+
+        public int?[]? Peek(int count) {
+            int?[]? returner = null;
+
+            if (TopPointer - 1 - count >- 0) {
+                returner = new int?[count];
+
+                for (int i = 0; i < count; i++) {
+                    returner[i] = MainList[TopPointer - 1 - i];
+                }
+            }
+            return returner;
         }
     }
 }
