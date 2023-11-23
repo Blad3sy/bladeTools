@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using sorting_algorithms;
+using data_structures;
 
 namespace Playground {
     class Playground {
         static void Main(string[] args) {
-            int[] arr = new int[59];
+            int[] starter = new int[] {1, 2, 3, 4, 5};
+            int[] pushingArray = new int[] {6, 7, 8, 9};
 
-            Random rnd = new Random();
-            for (int i = 0; i < 59; i++) {
-                arr[i] = rnd.Next(0, 60);
-            }
+            StaticStack testStack = new(10, starter);
+            testStack.Push(pushingArray);
 
-            arr = Sorting_Algorithms.MergeSort(arr);
+            testStack.Display();
 
-            foreach (int item in arr) {
-                Console.Write($"{item}, ");
-            }
+            Console.WriteLine(testStack.Peek());
+            Console.WriteLine(testStack.Pop());
+
+            testStack.Display();
         }
     }
 }
