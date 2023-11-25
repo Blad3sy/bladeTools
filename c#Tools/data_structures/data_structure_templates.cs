@@ -29,6 +29,7 @@ namespace data_structure_templates {
 
         public void Clear() => Array.Clear(MainArray);
         public bool IsEmpty() => MainArray.All(item => !item.HasValue) || Length == 0;
+        public bool IsFull() => MainArray.All(item => item.HasValue);
         public void Display() {
             foreach (var item in MainArray) {
                 if(item != null) {Console.Write($"{item}, ");}

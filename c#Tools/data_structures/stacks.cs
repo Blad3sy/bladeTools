@@ -142,6 +142,7 @@ namespace stacks {
         }
 
         public int?[]? Peek(int count) {
+            // Method overload purpose : get {count} number of items from the stack
             int?[]? returner = null;
 
             if (TopPointer - 1 - count >- 0) {

@@ -1,32 +1,29 @@
 ﻿using System;
-using stacks;
+using queues;
 
 namespace Playground {
     class Playground {
         static void Main(string[] args) {
-            int?[] starter = new int?[] {1, 2, 3, 4, 5};
-            int?[] pushingArray = new int?[] {6, 7, 8, 9};
+            int[]? starter = new int[] {1, 2, 3, 4, 5};
+            // int[] pushingArray = new int[] {6, 7, 8, 9};
 
-            DynamicStack testStack = new(starter);
-            testStack.Push(pushingArray);
+            StaticQueue testQueue = new(6);
 
-            testStack.Display();
+            testQueue.Display();
 
-            int?[]? arr = testStack.Peek(3);
+            testQueue.Enqueue(6);
+            testQueue.Enqueue(7);
+            testQueue.Display();
 
-            foreach (var item in arr) {
-                Console.Write($"{item}, ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(testQueue.Dequeue());
+            testQueue.Display();
 
-            arr = testStack.Pop(4);
+            testQueue.Enqueue(8);
+            testQueue.Display();
 
-            foreach (var item in arr) {
-                Console.Write($"{item}, ");
-            }
-            Console.WriteLine();
-
-            testStack.Display();
+            testQueue.Dequeue();
+            testQueue.Dequeue();
+            testQueue.Dequeue();
         }
     }
 }
