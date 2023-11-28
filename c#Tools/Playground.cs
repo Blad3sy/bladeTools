@@ -4,34 +4,30 @@ using queues;
 namespace Playground {
     class Playground {
         static void Main(string[] args) {
-            int[]? starter = new int[] {1, 2, 3, 4, 5};
-            int[] pushingArray = new int[] {8, 9, 10};
-            int[] pushingArray2 = new int[] {8, 9};
+            int?[]? starter = new int?[] {1, 2, 3, 4, 5};
+            int?[] pushingArray = new int?[] {8, 9, 10};
+            int?[] pushingArray2 = new int?[] {8, 9};
 
-            StaticQueue testQueue = new(6, starter);
+            DynamicQueue testQueue = new(starter);
 
-            testQueue.Dequeue(10);
+            testQueue.Dequeue(10); // Attempts to take more elements than present (ER)
             testQueue.Display();
 
-            testQueue.Dequeue(2);
-            testQueue.Dequeue(3);
+            Console.WriteLine(testQueue.Dequeue()); // Takes 1 element
+            testQueue.Dequeue(3); // Takes 3 elements
             testQueue.Display();
 
-            testQueue.Enqueue(pushingArray);
+            testQueue.Enqueue(pushingArray); // Adds 3 elements
             testQueue.Display();
 
-            testQueue.Enqueue(pushingArray2);
+            testQueue.Enqueue(pushingArray2); // Adds 2 elements
             testQueue.Display();
 
-            Console.WriteLine(testQueue.Dequeue());
+            Console.WriteLine(testQueue.Dequeue()); // Takes 1 Element
             testQueue.Display();
 
-            testQueue.Enqueue(8);
+            testQueue.Enqueue(8); // Adds 1 element
             testQueue.Display();
-
-            testQueue.Dequeue();
-            testQueue.Dequeue();
-            testQueue.Dequeue();
         }
     }
 }

@@ -1,8 +1,8 @@
+using System.Security.Cryptography;
 using data_structure_templates;
 
 namespace queues {
     class StaticQueue : ArrayDataStructure {
-
         private int HeadPointer { get; set; }
         private int TailPointer { get; set; }
         public StaticQueue(int length, int[]? starter = null) : base(length, starter) {
@@ -64,3 +64,43 @@ namespace queues {
         }
     }
 }
+    class DynamicQueue : ListDataStructure {
+        public DynamicQueue(int?[]? starter = null) : base(starter) {}
+        public void Enqueue(int toEnqueue) {
+            MainList.Add(toEnqueue);
+            Length++;
+        }
+
+        public void Enqueue(int?[] toEnqueue) {
+            // Method overload purpose : enqueue a whole array of values to the queue
+
+            MainList.AddRange(toEnqueue);
+            Length += toEnqueue.Length;
+        }
+
+        public int? Dequeue() {
+            int? returner = null;
+            if (!IsEmpty()) {
+                returner = MainList[0];
+                MainList.RemoveAt(0);
+                Length--;
+            }
+            else { Console.WriteLine("The queue is empty!"); }
+
+            return returner;
+        }
+
+        public int?[]? Dequeue(int count) {
+            // Method overload purpose : dequeue {count} number of items from the stack
+            int?[]? returner = null;
+
+            if (Length - count >= 0) {
+                returner = MainList.GetRange(0, count).ToArray();
+                MainList.RemoveRange(0, count);
+                Length -= count;
+            }
+            else { Console.WriteLine("You tried to dequeue more elements than there are!"); }
+
+            return returner;
+        }
+    }
