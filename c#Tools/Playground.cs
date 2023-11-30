@@ -1,33 +1,58 @@
 ﻿using System;
-using queues;
+using linked_list;
 
 namespace Playground {
     class Playground {
         static void Main(string[] args) {
-            int?[]? starter = new int?[] {1, 2, 3, 4, 5};
-            int?[] pushingArray = new int?[] {8, 9, 10};
-            int?[] pushingArray2 = new int?[] {8, 9};
+            // TESTING REGIME
 
-            DynamicQueue testQueue = new(starter);
+            /*
+            - starter
+            - !starter
 
-            testQueue.Dequeue(10); // Attempts to take more elements than present (ER)
-            testQueue.Display();
+            - AddNode (key = null, pointer = null)
+            - AddNode (key = !null, pointer = null) 
+            - AddNode (key = null, pointer = !null)
+            - AddNode (key = !null, pointer = !null)
 
-            Console.WriteLine(testQueue.Dequeue()); // Takes 1 element
-            testQueue.Dequeue(3); // Takes 3 elements
-            testQueue.Display();
+            - AddNode (keys = null, pointers = null)
+            - AddNode (keys = !null, pointers = null) 
+            - AddNode (keys = null, pointers = !null)
+            - AddNode (keys = !null, pointers = !null)
+            - AddNode (values.Length != keys.Length)
+            - AddNode (values.Length != pointers.Length)
+            - AddNode (keys.Length != pointers.Length)
 
-            testQueue.Enqueue(pushingArray); // Adds 3 elements
-            testQueue.Display();
+            - DeleteNode (key !exists)
+            - DeleteNode (key exists)
 
-            testQueue.Enqueue(pushingArray2); // Adds 2 elements
-            testQueue.Display();
+            - DeleteNode (allkeys !exist)
+            - DeleteNode (somekeys !exist)
+            - DeleteNode (allkeys exist)
 
-            Console.WriteLine(testQueue.Dequeue()); // Takes 1 Element
-            testQueue.Display();
+            - NextNode (to null node)
+            - NextNode (to null node, displayValue = true)
+            - NextNode (!to null node)
+            - NextNode (!to null node, displayValue = true)
 
-            testQueue.Enqueue(8); // Adds 1 element
-            testQueue.Display();
+            - SetNodePointer (key !exists)
+            - - NextNode
+            - SetNodePointer (key exists)
+            - - NextNode
+
+            - SetNodePointer (allkeys !exist)
+            - - NextNode ?(s)
+            - SetNodePointer (somekeys !exist)
+            - - NextNode ?(s)
+            - SetNodePointer (allkeys exist, keys.Length != pointers.Length)
+            - - NextNode ?(s)
+            - SetNodePointer (allkeys exist, keys.Length = pointers.Length)
+            - - NextNode ?(s)
+
+            - ResetCurrentNode
+            - GetCurrentNodeValue
+
+            */
         }
     }
 }

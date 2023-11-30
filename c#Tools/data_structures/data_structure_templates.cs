@@ -7,6 +7,7 @@ namespace data_structure_templates {
     interface IDStruct {
         void Clear();
         bool IsEmpty();
+        void Display();
     }
 
     abstract class ArrayDataStructure : IDStruct {
@@ -60,17 +61,26 @@ namespace data_structure_templates {
         }
     }
 
-    abstract class HashtableDataStructure : IDStruct {
-        protected Hashtable MainDict { get; set; }
-        public int Length { get; private set; }
+    abstract class DictionaryDataStructure : IDStruct {
+        protected Dictionary<int, int?[]> MainDict { get; set; }
+        public int Length { get; protected set; }
 
-        public HashtableDataStructure() {
-            MainDict = new Hashtable();
-
-            // TODO : Add default null starter functionality as in Array and List
+        public DictionaryDataStructure(Dictionary<int, int?[]>? starter = null) {
+            MainDict = new Dictionary<int, int?[]>();
+            
+            starter ??= new Dictionary<int, int?[]>();
+            foreach (int key in starter.Keys) {
+                MainDict.Add(key, starter[key]);
+            }
         }
 
         public void Clear() => MainDict.Clear();
         public bool IsEmpty() => MainDict.Count == 0;
+        public void Display() {
+            foreach (int key in MainDict.Keys) {
+                Console.Write($"{key} : [{MainDict[key][0]}, {MainDict[key][1]}]");
+            }
+            Console.WriteLine();
+        }
     }
 }
