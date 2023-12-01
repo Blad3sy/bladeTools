@@ -71,6 +71,7 @@ namespace data_structure_templates {
             starter ??= new Dictionary<int, int?[]>();
             foreach (int key in starter.Keys) {
                 MainDict.Add(key, starter[key]);
+                Length++;
             }
         }
 
@@ -78,7 +79,7 @@ namespace data_structure_templates {
         public bool IsEmpty() => MainDict.Count == 0;
         public void Display() {
             foreach (int key in MainDict.Keys) {
-                Console.Write($"{key} : [{MainDict[key][0]}, {MainDict[key][1]}]");
+                Console.Write($"{{{key} : [{MainDict[key][0]}, {MainDict[key][1]}]}}, ");
             }
             Console.WriteLine();
         }

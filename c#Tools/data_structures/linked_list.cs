@@ -11,19 +11,29 @@ namespace linked_list {
         }
 
         public void AddNode(int value, int? key = null, int? pointer = null) {
-            int nonNullKey = (key == null) ? DefaultKey : Convert.ToInt32(key);
+            int nonNullKey;
+            if (key == null) {
+                while (MainDict.ContainsKey(DefaultKey)) {
+                    DefaultKey++;
+                }
+                nonNullKey = DefaultKey;
+            }
+            else { nonNullKey = Convert.ToInt32(key); }
+
             MainDict.Add(nonNullKey, new int?[] {value, pointer});
             Length++;
         }
 
-        public void AddNode(int[] values, int[]? keys = null, int?[]? pointers = null) {
+        public void AddNode(int[] values, int?[]? keys = null, int?[]? pointers = null) {
             // Method overload purpose : add a whole array of nodes to the Linked List
 
             if (keys == null) {
-                keys = new int[values.Length];
+                keys = new int?[values.Length];
                 for (int i = 0; i < keys.Length; i++) {
+                    while (MainDict.ContainsKey(DefaultKey) || keys.Contains(DefaultKey)) {
+                        DefaultKey++;
+                    }
                     keys[i] = DefaultKey;
-                    DefaultKey++;
                 }
             }
 
@@ -32,7 +42,7 @@ namespace linked_list {
             if (values.Length == keys.Length && values.Length == pointers.Length && keys.Length == pointers.Length) {
                 // I'd like to comment on this. I don't like this. This is simply ridiculous. Why, Microsoft, can I not make a logic comparison between more than 2 variables?
                 for (int i = 0; i < keys.Length; i++) {
-                    AddNode(values[i], keys[i], pointers[i]);
+                    MainDict.Add(Convert.ToInt32(keys[i]), new int?[] {values[i], pointers[i]});
                 }
             }
             else { Console.WriteLine("Your value, key and pointer arrays were not all the same length!"); }
@@ -58,6 +68,8 @@ namespace linked_list {
         }
 
         public void NextNode(bool displayValue = false) {
+            if (!MainDict.ContainsKey(CurrentNode)) { CurrentNode = MainDict.Keys.First(); }
+            
             if (MainDict[CurrentNode][1] != null) {
                 CurrentNode = Convert.ToInt32(MainDict[CurrentNode][1]);
                 if (displayValue) { Console.WriteLine(GetCurrentNodeValue()); }
@@ -84,6 +96,7 @@ namespace linked_list {
         }
 
         public void ResetCurrentNode() => CurrentNode = 0;
+        public void ResetDefaultKey() => DefaultKey = 0;
         public int GetCurrentNodeValue() => Convert.ToInt32(MainDict[CurrentNode][0]);
     }
 }
