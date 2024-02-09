@@ -1,10 +1,12 @@
 def bubble_Sort(array):
     change = True
+    offset = 0
 
     while change == True:
         change = False
+        offset += 1
         
-        for i in range(0, len(array) - 1):
+        for i in range(0, len(array) - offset):
             bubbleLeft = array[i]
 
             if bubbleLeft > array[i+1]:
@@ -15,18 +17,14 @@ def bubble_Sort(array):
     return array
 
 def insertion_Sort(array):
-    pointer = 1
-    positioner = 0
+    for i in range(1, len(array)):
+        pointer = i
 
-    while pointer <= len(array) - 1:       
-        for i in range(0, pointer):
-            if array[pointer] > array[i] and i+1 > positioner:
-                positioner = i+1
-            elif array[pointer] < array[i] and i < positioner:
-                positioner = i
-
-        array.insert(positioner, array.pop(pointer))
-        pointer += 1
+        while pointer > 0 and array[pointer] < array[pointer - 1]:
+            buffer = array[pointer]
+            array[pointer] = array[pointer - 1]
+            array[pointer - 1] = buffer
+            pointer -= 1
     
     return array
 

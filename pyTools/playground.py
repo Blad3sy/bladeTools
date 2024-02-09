@@ -1,23 +1,27 @@
-import data_structures
+import sorting_algorithms
+from timing import Timer
+from random import randint
 
-queue = data_structures.Static_Queue()
+def genArray(length, lowerbound, upperbound):
+    arr = []
 
-queue.dequeue()
-queue.enqueue(1)
-print(queue.list, queue.endPointer)
-queue.enqueue(2)
-print(queue.list, queue.endPointer)
-queue.enqueue(3)
-print(queue.list, queue.endPointer)
-queue.dequeue()
-print(queue.list, queue.endPointer)
-queue.enqueue(4)
-print(queue.list, queue.endPointer)
-queue.enqueue(5)
-print(queue.list, queue.endPointer)
-queue.enqueue(6)
-print(queue.list, queue.endPointer)
-queue.enqueue(7)
-print(queue.list, queue.endPointer)
-queue.dequeue()
-print(queue.list)
+    for i in range(length):
+        arr.append(randint(lowerbound, upperbound))
+    
+    return arr
+
+print("Sorting 15000 numbers between 0 and 1000000...")
+timer = Timer(True)
+
+sorting_algorithms.bubble_Sort(genArray(15000, 0, 1000000))
+print("Bubble sort - ", end = "")
+timer.lapTimer()
+sorting_algorithms.insertion_Sort(genArray(15000, 0, 1000000))
+print("Insertion sort - ", end = "")
+timer.lapTimer()
+sorting_algorithms.merge_Sort(genArray(15000, 0, 1000000))
+print("Merge sort - ", end = "")
+timer.lapTimer()
+sorted(genArray(15000, 0, 1000000))
+print("Inbuilt sort - ", end = "")
+timer.finishTimer()
