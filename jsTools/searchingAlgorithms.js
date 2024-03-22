@@ -1,5 +1,5 @@
 function linearSearch(array, toSearch) {
-    for (i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         if (array[i] == toSearch) {
             return true;
         }
@@ -8,8 +8,8 @@ function linearSearch(array, toSearch) {
 }
 
 function binarySearch(array, toSearch) {
-    leftPointer = 0;
-    rightPointer = array.length - 1;
+    let leftPointer = 0;
+    let rightPointer = array.length - 1;
 
     while (rightPointer >= leftPointer) {
         midPointer = Math.floor((leftPointer + rightPointer) / 2);
@@ -28,7 +28,7 @@ function binarySearch(array, toSearch) {
     return false;
 }
 
-arr = [1, 2, 5, 7, 12, 64, 560, 1245, 124526];
+let arr = [1, 2, 5, 7, 12, 64, 560, 1245, 124526];
 
 console.log(binarySearch(arr, 1));
 console.log(binarySearch(arr, 3));
